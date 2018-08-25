@@ -1,5 +1,5 @@
 {
-  "name": "swagger-express-ts",
+  "name": "swagger-ts-express",
   "version": "1.0.0",
   "description": "Generate and serve swagger.json",
   "main": "./dist/index.js",
@@ -23,20 +23,6 @@
   "author": "Ariel Zadok",
   "license": "MIT",
   "keywords": [
-    "inversify",
-    "inversifyjs",
-    "swagger",
-    "swagger2",
-    "swagger-ui",
-    "typescript",
-    "expressjs",
-    "express",
-    "api rest",
-    "documentation",
-    "decorator",
-    "generator",
-    "swagger.json",
-    "json",
     "rest"
   ],
   "bugs": {
