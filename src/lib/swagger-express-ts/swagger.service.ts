@@ -61,14 +61,14 @@ export class SwaggerService {
 
   private constructeur() {}
 
-  public static getInstance(version: string): SwaggerService {
+  public static getInstance(apiVersion: string = "v1"): SwaggerService {
     let swaggerService: SwaggerService = SwaggerService.instanceMap.get(
-      version
+      apiVersion
     );
     if (!swaggerService) {
       swaggerService = new SwaggerService();
       swaggerService.initData();
-      SwaggerService.instanceMap.set(version, swaggerService);
+      SwaggerService.instanceMap.set(apiVersion, swaggerService);
     }
     return swaggerService;
   }
@@ -639,10 +639,6 @@ export class SwaggerService {
 
   private buildRef(definition: string): string {
     return "#/definitions/".concat(_.upperFirst(definition));
-  }
-
-  public getSwaggerBuildDefinitionModel(definitionKey) {
-    return this.modelsMap[definitionKey];
   }
 
   public addApiModelProperty(
