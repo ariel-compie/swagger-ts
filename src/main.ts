@@ -49,6 +49,7 @@ server.setConfig((app: any) => {
   app.use(bodyParser.json());
   app.use(
     swagger.express({
+      apiVersion: "1.0",
       definition: {
         info: {
           title: "My api",

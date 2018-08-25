@@ -74,4 +74,10 @@ export interface IApiOperationArgsBase {
    * Optional.
    */
   deprecated?: boolean;
+
+  /**
+   * Define apiVersion
+   * Optional.
+   */
+  apiVersion?: [string];
 }

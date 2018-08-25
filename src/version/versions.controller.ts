@@ -22,6 +22,7 @@ import { VersionModel } from "./version.model";
 @ApiPath({
   path: "/versions",
   name: "Versions",
+  apiVersion: ["1.0"],
   security: { apiKeyHeader: [] }
 })
 @controller("/versions")
@@ -37,6 +38,7 @@ export class VersionsController implements interfaces.Controller {
   @ApiOperationGet({
     description: "Get versions objects list",
     summary: "Get versions list",
+    apiVersion: ["1.0"],
     responses: {
       200: {
         type: SwaggerDefinitionConstant.Response.Type.ARRAY,
@@ -59,6 +61,7 @@ export class VersionsController implements interfaces.Controller {
   @ApiOperationPost({
     description: "Post version object",
     summary: "Post new version",
+    apiVersion: ["1.0"],
     parameters: {
       body: { description: "New version", required: true, model: "Version" }
     },

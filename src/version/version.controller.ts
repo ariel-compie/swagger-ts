@@ -16,7 +16,8 @@ import { VersionsService } from "./versions.service";
 
 @ApiPath({
   path: "/versions/{id}",
-  name: "Versions"
+  name: "Versions",
+  apiVersion: ["1.0"]
 })
 @controller("/versions/:id")
 @injectable()
@@ -30,6 +31,7 @@ export class VersionController implements interfaces.Controller {
 
   @ApiOperationGet({
     description: "Get version object",
+    apiVersion: ["1.0"],
     parameters: {
       path: {
         id: {

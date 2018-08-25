@@ -5,9 +5,13 @@ export interface IApiPathArgs {
   description?: string;
   security?: { [key: string]: any[] };
   deprecated?: boolean;
+  apiVersion?: [string];
 }
 export function ApiPath(args: IApiPathArgs): ClassDecorator {
   return function(target: any) {
-    SwaggerService.getInstance().addPath(args, target);
+    const apiVersions = args.apiVersion || ["v1"];
+    apiVersions.forEach((apiV: string) => {
+      SwaggerService.getInstance(apiV).addPath(args, target);
+    });
   };
 }

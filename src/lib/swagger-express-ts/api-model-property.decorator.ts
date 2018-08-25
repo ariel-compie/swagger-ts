@@ -1,5 +1,4 @@
 import { SwaggerService } from "./swagger.service";
-import { IApiOperationArgsBase } from "./i-api-operation-args.base";
 
 export interface IApiModelPropertyArgs {
   /**
@@ -43,6 +42,12 @@ export interface IApiModelPropertyArgs {
    * Optional.
    */
   itemType?: string;
+
+  /**
+   * Define apiVersion. Example: v1
+   * Optional.
+   */
+  apiVersion?: [string];
 }
 
 export function ApiModelProperty(
@@ -51,11 +56,14 @@ export function ApiModelProperty(
   return function(target: any, propertyKey: string | symbol) {
     const propertyType = Reflect.getMetadata("design:type", target, propertyKey)
       .name;
-    SwaggerService.getInstance().addApiModelProperty(
-      args,
-      target,
-      propertyKey,
-      propertyType
-    );
+    const apiVersions = args.apiVersion || ["v1"];
+    apiVersions.forEach((apiV: string) => {
+      SwaggerService.getInstance(apiV).addApiModelProperty(
+        args,
+        target,
+        propertyKey,
+        propertyType
+      );
+    });
   };
 }

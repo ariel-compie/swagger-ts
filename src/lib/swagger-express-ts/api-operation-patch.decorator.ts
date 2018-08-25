@@ -10,6 +10,13 @@ export function ApiOperationPatch(
     propertyKey: string | symbol,
     descriptor: PropertyDescriptor
   ) {
-    SwaggerService.getInstance().addOperationPatch(args, target, propertyKey);
+    const apiVersions = args.apiVersion || ["v1"];
+    apiVersions.forEach((apiV: string) => {
+      SwaggerService.getInstance(apiV).addOperationPatch(
+        args,
+        target,
+        propertyKey
+      );
+    });
   };
 }

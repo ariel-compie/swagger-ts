@@ -8,6 +8,13 @@ export function ApiOperationPost(args: IApiOperationPostArgs): MethodDecorator {
     propertyKey: string | symbol,
     descriptor: PropertyDescriptor
   ) {
-    SwaggerService.getInstance().addOperationPost(args, target, propertyKey);
+    const apiVersions = args.apiVersion || ["v1"];
+    apiVersions.forEach((apiV: string) => {
+      SwaggerService.getInstance(apiV).addOperationPost(
+        args,
+        target,
+        propertyKey
+      );
+    });
   };
 }

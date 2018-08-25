@@ -10,6 +10,13 @@ export function ApiOperationDelete(
     propertyKey: string | symbol,
     descriptor: PropertyDescriptor
   ) {
-    SwaggerService.getInstance().addOperationDelete(args, target, propertyKey);
+    const apiVersions = args.apiVersion || ["v1"];
+    apiVersions.forEach((apiV: string) => {
+      SwaggerService.getInstance(apiV).addOperationDelete(
+        args,
+        target,
+        propertyKey
+      );
+    });
   };
 }
