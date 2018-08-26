@@ -35,7 +35,7 @@ export function express(options?: ISwaggerExpressOptions): Router {
       apiVersion = options.apiVersion;
     }
     if (options.definition) {
-      build(options.definition);
+      build(options.definition, apiVersion);
     }
   }
   const router = buildRouter(path, apiVersion);

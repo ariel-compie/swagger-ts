@@ -159,13 +159,12 @@ export interface ISwaggerBuildDefinition {
   responses?: { [key: string]: IApiOperationArgsBaseResponse };
 }
 
-export function build(buildDefinition: ISwaggerBuildDefinition): void {
+export function build(buildDefinition: ISwaggerBuildDefinition, apiVersion: string = "v1"): void {
   assert.ok(buildDefinition, "Definition are required.");
   assert.ok(
     buildDefinition.info,
     'Informations are required. Base is { title: "Title of my API", version: "1.0.0"}'
   );
-  const apiVersion = buildDefinition.info.version || "v1";
 
   if (buildDefinition.basePath) {
     SwaggerService.getInstance(apiVersion).setBasePath(
